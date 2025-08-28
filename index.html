@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zenith Habit Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Normal Light Theme */
+        :root.light[data-mode="normal"] {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F7F7F5;
+            --bg-tertiary: #EFEFEE;
+            --text-primary: #37352F;
+            --text-secondary: #787774;
+            --border-primary: #E1E1DF;
+            --accent-primary: #4A90E2;
+            --accent-secondary: #D4E5F9;
+            --accent-positive: #52B865;
+            --accent-negative: #E03E3E;
+        }
+        /* Normal Dark Theme */
+        :root.dark[data-mode="normal"] {
+            --bg-primary: #191919;
+            --bg-secondary: #2F2F2F;
+            --bg-tertiary: #404040;
+            --text-primary: #E2E2E2;
+            --text-secondary: #9B9A97;
+            --border-primary: #4D4D4D;
+            --accent-primary: #4A90E2;
+            --accent-secondary: #2A4C7A;
+            --accent-positive: #52B865;
+            --accent-negative: #E03E3E;
+        }
+        /* Beast Light Theme */
+        :root.light[data-mode="beast"] {
+            --bg-primary: #FFFCF7;
+            --bg-secondary: #FFF7EE;
+            --bg-tertiary: #FFEFE0;
+            --text-primary: #BF360C;
+            --text-secondary: #E65100;
+            --border-primary: #FFCC80;
+            --accent-primary: #FF6D00;
+            --accent-secondary: #FFE0B2;
+            --accent-positive: #16A34A;
+            --accent-negative: #DC2626;
+        }
+        /* Beast Dark Theme */
+        :root.dark[data-mode="beast"] {
+            --bg-primary: #12100E;
+            --bg-secondary: #211D1A;
+            --bg-tertiary: #332E2B;
+            --text-primary: #FFFBEB;
+            --text-secondary: #FDAC4F;
+            --border-primary: #4A4540;
+            --accent-primary: #FF6D00;
+            --accent-secondary: #5F2800;
+            --accent-positive: #4ADE80;
+            --accent-negative: #F87171;
+        }
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Beast Mode Animations */
+        @keyframes flame-flicker {
+            0%, 100% { transform: scale(1) rotate(-2deg); opacity: 0.9; }
+            50% { transform: scale(1.1) rotate(2deg); opacity: 1; }
+        }
+
+        @keyframes draw-check {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-150%) skewX(-20deg); }
+            40% { transform: translateX(150%) skewX(-20deg); }
+            100% { transform: translateX(150%) skewX(-20deg); }
+        }
+
+        [data-mode="beast"] .beast-flame {
+            animation: flame-flicker 2.5s ease-in-out infinite;
+        }
+        
+        [data-mode="beast"] .beast-checkmark {
+            stroke-dasharray: 50;
+            stroke-dashoffset: 50;
+            animation: draw-check 0.4s ease-out forwards;
+        }
+        
+        [data-mode="beast"] .beast-badge-earned {
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-mode="beast"] .beast-badge-earned::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
+            animation: shine 3.5s ease-in-out infinite;
+        }
+        
+        [data-mode="beast"] button:active .beast-interactive-icon {
+            transform: scale(1.25);
+        }
+        
+        .beast-interactive-icon {
+            transition: transform 0.1s ease-out;
+        }
+
+        @keyframes fiery-pulse-icon {
+            0%, 100% { filter: drop-shadow(0 0 2px var(--accent-primary)); }
+            50% { filter: drop-shadow(0 0 5px var(--accent-primary)); }
+        }
+
+        @keyframes fiery-pulse-box {
+            0%, 100% { box-shadow: 0 0 4px 0 var(--accent-primary); }
+            50% { box-shadow: 0 0 7px 1px var(--accent-primary); }
+        }
+        
+        [data-mode="beast"] .beast-fiery-icon {
+            animation: fiery-pulse-icon 2s ease-in-out infinite;
+        }
+
+        [data-mode="beast"] .beast-fiery-box {
+            animation: fiery-pulse-box 2s ease-in-out infinite;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.8.2",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1"
+  }
+}
+</script>
+</head>
+<body class="antialiased font-sans">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+{
+  "name": "Zenith Habit Tracker",
+  "description": "A Notion-inspired habit tracker to build routines, track streaks, and visualize your progress. Features daily tracking, partial completion, a calendar view, and light/dark modes in two distinct styles: Normal and Beast.",
+  "requestFramePermissions": []
+}
